@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+</head>
+<body>
+<h1>Create news</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+  {{news}}
+    <input type="submit" value="Save">
+</form>
+
+
+
+
+</body>
+</html>
