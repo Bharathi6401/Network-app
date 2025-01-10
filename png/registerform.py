@@ -5,7 +5,8 @@ class Register_form(ModelForm):
 
     class Meta:
         model=Reg
-        fields='__all__'
+        fields=['company_name','company_logo','email','password','youtube_URL',]
+
 
 
 

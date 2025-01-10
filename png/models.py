@@ -3,11 +3,18 @@ from django.db import models
 
 
 class Reg(models.Model):
+
+    STATUS_CHOICES=[
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    ]
     company_name = models.CharField(max_length=200)
     company_logo=models.ImageField(upload_to='logos/')
     email=models.EmailField(max_length=100, null=True )
     password=models.CharField(max_length=100, null=True)
     youtube_URL=models.URLField(null=True)
+    status=models.CharField(max_length=10, choices=STATUS_CHOICES,default='pending')
 
 
     def __str__(self):

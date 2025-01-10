@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Partners</title>
+</head>
+<body>
+<h1>Approved Partners</h1>
+{% if companies %}
+ {% for company in companies %}
+
+            <div class="partner-card">
+                <a href="">
+                    <img src="{{ company.logo.url }}" alt="{{ company.name }} Logo" >
+                </a>
+                <p>{{ company.company_name }}</p>
+            </div>
+{% endfor %}
+{% else %}
+
+
+            <p class="no-partners">No partners available at the moment.</p>
+
+{% endif %}
+</body>
+</html>

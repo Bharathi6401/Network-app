@@ -58,8 +58,13 @@ def register(request):
     if request.method == 'POST':
         reg_form = Register_form(request.POST, request.FILES)
         if reg_form.is_valid():
-            reg_form.save()
+            company=reg_form.save()
             #return redirect('home')  # Replace 'success_page' with the name of your success URL or view.
+            company.created_by=request.user
+
+            company.save()
+        else:
+            messages.error(request, "Please correct the errors below.")
     else:
         reg_form = Register_form()
 
@@ -67,6 +72,10 @@ def register(request):
         'register_form': reg_form
     }
     return render(request, 'registerationform.html', context)
+
+
+
+
 
 def event(request):
     if request.method=='POST':
@@ -98,6 +107,7 @@ from django.contrib import messages
 def login_view(request):
     if request.method == 'POST':
         #print(request.POST)
+
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
         print(user)
 
@@ -115,3 +125,15 @@ def login_view(request):
 
 def landing(request):
         return render(request,'admin_landing.html')
+
+
+
+def partners1(request):
+    companies=Reg.objects.filter(status='approved')
+
+    for comp in companies:
+        print(f"Company Name: {comp.company_name}, Status: {comp.status}")
+
+    return render(request,'partners.html',context={'companies':companies})
+
+
